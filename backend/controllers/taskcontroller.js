@@ -4,13 +4,21 @@ const addTask = async(req,res) =>{
     try {
         const {taskName} = req.body;
 
-        const Task = Task({
+        if(taskName == null || !taskName){
+          res.status(400).json({
+            message : "The task name is required"
+          })
+          return
+        }
+
+        const task = new Task({
             taskName
         });
 
-        await Task.save();
+        await task.save();
         res.status(200).json({success:true, message:"New case added successfully"})
     } catch (error) {
+        console.log(error);
         res.status(500).json({success:false, message:"Internal server error"})
     }
 }
@@ -18,15 +26,14 @@ const addTask = async(req,res) =>{
 const getTasks = async(req,res)=>{
 
     try {
-        
-     const tasks = await Task.findMany();
+     const tasks = await Task.find()
      if(!tasks){
         return res.status(400).json({success:false, message:"no tasks found in the database"})
      }
-     
+    
      return res.status(200).json({tasks});
     } catch (error) {
-        
+        console.log(error)
         return res.status(500).json({success:false, message:"internal server error"})
     }
 
@@ -36,6 +43,12 @@ const getTask = async(req,res)=>{
 
     try {
         const taskId = req.params.id;
+
+        if(taskId == null || !taskId){
+            res.status(400).json({
+                message : "The task id is required"
+            })
+        }
 
         const foundTask = await Task.findById(taskId);
 
@@ -79,6 +92,12 @@ const updateTask = async (req, res) => {
         const taskId = req.params.id;
         
         const updateFields = req.body;
+
+        if(taskId == null || !taskId || !updateFields ){
+            res.status(400).json({
+                message : 'The id of the task and the new body are required'
+            })
+        }
 
         const updatedTask = await Task.findByIdAndUpdate(taskId, updateFields, { new: true });
 
