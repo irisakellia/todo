@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const Index = () => {
   
-  const [value, setValue] = useState({
-    
-  })
+  const [value, setValue] = useState("")
 
-  const handleChange = (e)=>{
-    setValue({
-      ...value,
-      [e.target.name]: e.target.value,
-    })
-  }
+  // const handleChange = (e)=>{
+  //   setValue({
+  //     ...value,
+  //     [e.target.name]: e.target.value,
+  //   })
+  // }
   const handleSubmit = async (e) =>{
     e.preventDefault();
     try {
-      const addTask = await axios.post('http://localhost:3000/addTask');
+      const addTask = await axios.post('http://localhost:5000/api/v1/addTask');
       const response = addTask.data;
       if(response) {
         console.log(response);
