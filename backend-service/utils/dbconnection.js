@@ -1,15 +1,21 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+const mongoose = require('mongoose')
 
-const dbconnection = async () =>{
-    const url = process.env.MONGO_URL;
-    try {
-await mongoose.connect(url)
-        console.log('connected successfully to mongo')
-    } catch (error) {
-        console.error('failed to connect to mongo', error)
-    }
+const uri = 'mongodb+srv://irisakellia:123@cluster0.jhv2iwc.mongodb.net/todo?retryWrites=true&w=majority&appName=Cluster0'
+
+const dbConnection = ()=>{
+
+mongoose.connect(uri);
+
+mongoose.connection.on("connected",()=>{
+    console.log("connected successfully to mongodb");
+})
+
+mongoose.connection.on("error",()=>{
+    console.error("error.message");
+})
+
+mongoose.connection.on("disconnected",()=>{
+    console.log("no internet available")
+})
+
 }
-
-
-module.exports = dbconnection;
