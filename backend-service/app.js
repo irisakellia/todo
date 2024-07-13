@@ -10,6 +10,7 @@ const app =  express();
 const port = 3000 ;
 
 dbConnection();
+
 app.use(bodyParser.json())
 app.use('/task', router);
 

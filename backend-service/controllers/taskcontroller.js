@@ -12,7 +12,7 @@ const addTask = async (req, res) => {
     await task.save();
 
     console.log('Saved Task:', task);
-    return res.status(200).json({ success: true, message: `${taskName} has been successfully added`, task });
+    return res.status(200).json({ success: true, message: `${task} has been successfully added`, task });
 
   } catch (error) {
     console.error('Error adding task:', error);
