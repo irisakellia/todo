@@ -8,7 +8,9 @@ const app =  express();
 const port = 3000 ;
 
 dbConnection();
-app.use('/task',router);
+app.use(express.json())
+app.use('/task', router);
+
 
 
 
