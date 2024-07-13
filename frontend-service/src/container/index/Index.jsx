@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const Index = () => {
   
-  const [value, setValue] = useState("")
+  const [data, setData] = useState("")
 
   // const handleChange = (e)=>{
   //   setValue({
@@ -13,20 +13,24 @@ const Index = () => {
   // }
   const handleSubmit = async (e) =>{
     e.preventDefault();
-    try {
-      const addTask = await axios.post('http://localhost:5000/api/v1/addTask');
-      const response = addTask.data;
-      if(response) {
-        console.log(response);
+   try {
+    const response = await fetch("http://localhost:3000/add/task",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
       }
-      if(addTask){
-        window.location.href = '/task'
-      }
-      
-    } catch (error) {
-      console.log(error);
+     body:JSON.stringify(data),
     }
-  }
+  
+  );
+
+  const result = await response.json();
+  console.log(result)
+
+    
+   } catch (error) {
+    throw new Error("failed to add a new task")
+   }
  
 
   return (
@@ -40,6 +44,7 @@ const Index = () => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
+        <button value={data.task}></button>
         <button type='submit' className=' text-center text-red-700  ml-4 border border-white rounded-lg bg-black p-2 py-px'>
           Add task
         </button>
