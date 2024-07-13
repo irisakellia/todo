@@ -1,5 +1,5 @@
 const express = require('express')
-const dbConnection = require("./utils/dbconnection")
+const {dbConnection} = require("./utils/dbconnection")
 const addRoute = require('./routes/routes')
 
 

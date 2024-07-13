@@ -15,7 +15,7 @@ mongoose.connection.on("error",()=>{
 })
 
 mongoose.connection.on("disconnected",()=>{
-    console.log("no internet available")
+    console.log("A disconnection from the database ")
 })
 
 }

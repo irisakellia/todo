@@ -1,5 +1,5 @@
 const express  = require('express');
-const addcontroller = require('../controllers/taskcontroller.ts')
+const addcontroller = require('../controllers/taskcontroller')
 
 const router = express.Router();
 
