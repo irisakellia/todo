@@ -12,16 +12,16 @@ const Index = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/task/add", {
+      const response = await fetch("http://localhost:3000/add/task", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ taskName: data.task }), // Ensure the task object matches backend expectation
+        body: JSON.stringify({ taskName: data.task }),
       });
 
       const result = await response.json();
       setResult(result.message);
       if (response.ok) {
-        fetchTasks();  // Fetch tasks after adding a new one
+        fetchTasks();  
       }
     } catch (error) {
       console.error("Failed to add a new task", error);
@@ -31,7 +31,7 @@ const Index = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch("http://localhost:3000/task/all");
+      const response = await fetch("http://localhost:3000/all/tasks");
       const result = await response.json();
       if (response.ok) {
         setTasks(result.tasks);
@@ -68,16 +68,7 @@ const Index = () => {
           )}
         </div>
       </form>
-      <div className='task-list'>
-        <h2 className='text-white font-serif pt-10 pl-96 font-medium'>Your Tasks:</h2>
-        <ul className='ml-96 mt-4'>
-          {tasks.map((task) => (
-            <li key={task._id} className='text-white'>
-              {task.taskName}
-            </li>
-          ))}
-        </ul>
-      </div>
+   
     </div>
   );
 };
