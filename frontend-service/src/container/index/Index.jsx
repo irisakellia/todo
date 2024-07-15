@@ -50,7 +50,7 @@ const Index = () => {
           Add task
         </button>
         {result && (
-          <p className='text-white mt-4'>{result}</p>
+          <p className='text-black bg-white p-2 py-2 w-80 ml-96 mt-10 rounded-xl'>{result}</p>
         )}
       </div>
     </form>
