@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FaTrash, FaEdit } from 'react-icons/fa';
 
 const Index = () => {
   const [data, setData] = useState({ task: '' });
@@ -21,7 +22,7 @@ const Index = () => {
       const result = await response.json();
       setResult(result.message);
       if (response.ok) {
-        fetchTasks(); // Fetch tasks after adding a new one
+        fetchTasks(); 
       }
     } catch (error) {
       console.error("Failed to add a new task", error);
@@ -44,6 +45,26 @@ const Index = () => {
   useEffect(() => {
     fetchTasks();
   }, []);
+
+
+  const handleDelete = async(id)=>{
+    try {
+      const response = await fetch(`http://localhost:3000/remove/${id}`,{
+        method:"DELETE",
+
+      });
+      const result = await response.json();
+      setResult(result.message);
+      if(response.ok){
+        fetchTasks();
+      }
+      
+    } catch (error) {
+     console.error("failed to delete task",error);
+     setResult("failed to delete"); 
+    }
+
+  }
 
   return (
     <div className='grid grid-cols-2'>

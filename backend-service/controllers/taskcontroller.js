@@ -43,4 +43,27 @@ const getTasks = async(req,res)=>{
   
 }
 
-module.exports = { addTask,getTasks };
+
+const deleteTask = async(req,res)=>{
+
+
+  try {
+
+    const {id} = req.params ;
+    const task = await Task.findByIdAndDelete(id);
+
+    if(!task){
+      return res.status(400).json({success:false, message:"cannot find the task"})
+    }else {
+      return res.status(200).json({success:true , message:"task deleted successfully"})
+    }
+    
+  } catch (error) {
+    console.error(error.message)
+    return res.status(500).json({success:false, message:"internal server error"})
+  }
+}
+
+
+
+module.exports = { addTask,getTasks,deleteTask };
