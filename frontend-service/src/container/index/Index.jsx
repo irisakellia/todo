@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Index = () => {
   const [data, setData] = useState({
     task: '',
   });
   const [result, setResult] = useState('');
+  const [task, setTask] = useState([]);
 
   const handleChange = (e) => {
     setData({
@@ -38,11 +39,24 @@ const Index = () => {
   const fetchTasks = async()=>{
 
     try {
+
+      const response = await fetch("http://localhost:3000/all/tasks");
+      
+      const result = await response.json();
+
+      if(response.ok){
+        setTasks(result.tasks);
+      }
       
     } catch (error) {
-      
+      console.error("failed to fetch tasks", error)
     }
-  }
+  };
+
+  useEffect(()=>{
+
+    fetchTasks();
+  },[])
 
   return (
     <form onSubmit={handleSubmit}>
