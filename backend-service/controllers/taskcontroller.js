@@ -1,19 +1,18 @@
-
-const Task = require('../models/task.model')
+const Task = require('../models/task.model');
 
 const addTask = async (req, res) => {
   try {
-     const { taskName } = req.body;
+    const { task } = req.body;
 
-    if (!taskName) {
+    if (!task) {
       return res.status(400).json({ success: false, message: "Task name is required" });
     }
 
-    const task = new Task({ taskName });
-    await task.save();
+    const taskEntry = new Task({ taskName: task });
+    await taskEntry.save();
 
-    console.log('Saved Task:', task);
-    return res.status(200).json({ success: true, message: `${ta} has been successfully added`});
+    console.log('Saved Task:', taskEntry);
+    return res.status(200).json({ success: true, message: `${task} ` });
 
   } catch (error) {
     console.error('Error adding task:', error);
@@ -21,5 +20,4 @@ const addTask = async (req, res) => {
   }
 };
 
-
-module.exports = {addTask}
+module.exports = { addTask };
