@@ -4,6 +4,7 @@ const Index = () => {
   const [data, setData] = useState({
     task: '',
   });
+  const [result, setResult] = useState('');
 
   const handleChange = (e) => {
     setData({
@@ -24,16 +25,19 @@ const Index = () => {
       });
 
       const result = await response.json();
-      console.log(result);
+      setResult(result.message);  
     } catch (error) {
       console.error("Failed to add a new task");
+      setResult("Failed to add a new task");
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div className='bg-black h-[1000px]'>
-        <h1 className='text-white font-serif pt-40 pl-96 font-medium'>ANYTHING YOU WANNA DO PLEASE SHARE</h1>
+        <h1 className='text-white font-serif pt-40 pl-96 font-medium'>
+          ANYTHING YOU WANNA DO PLEASE SHARE
+        </h1>
         <input
           type='text'
           name='task'
@@ -45,6 +49,9 @@ const Index = () => {
         <button type='submit' className='text-center text-red-700 ml-4 border border-white rounded-lg bg-black p-2 py-px'>
           Add task
         </button>
+        {result && (
+          <p className='text-white mt-4'>{result}</p>
+        )}
       </div>
     </form>
   );
