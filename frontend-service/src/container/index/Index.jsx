@@ -15,13 +15,13 @@ const Index = () => {
       const response = await fetch("http://localhost:3000/add/task", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ taskName: data.task }),
+        body: JSON.stringify({ task: data.task }),
       });
 
       const result = await response.json();
       setResult(result.message);
       if (response.ok) {
-        fetchTasks();  
+        fetchTasks(); // Fetch tasks after adding a new one
       }
     } catch (error) {
       console.error("Failed to add a new task", error);
@@ -46,7 +46,8 @@ const Index = () => {
   }, []);
 
   return (
-    <div>
+    <div className='grid grid-cols-2'>
+      <section>
       <form onSubmit={handleSubmit}>
         <div className='bg-black h-[1000px]'>
           <h1 className='text-white font-serif pt-40 pl-96 font-medium'>
@@ -68,7 +69,20 @@ const Index = () => {
           )}
         </div>
       </form>
-   
+      </section>
+
+      <section className='ml-80 pt-20 bg-white pl-10 rounded-xl h-auto pr-10'>
+      <div className='task-list'>
+        <h2 className='text-black font-serif  font-medium'>Your Tasks:</h2>
+        <ul className=''>
+          {tasks.map((task) => (
+            <li key={task._id} className='text-black'>
+              {task.taskName}
+            </li>
+          ))}
+        </ul>
+      </div>
+      </section>
     </div>
   );
 };
