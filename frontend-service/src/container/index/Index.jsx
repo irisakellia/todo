@@ -25,12 +25,24 @@ const Index = () => {
       });
 
       const result = await response.json();
-      setResult(result.message);  
+      setResult(result.message); 
+      if(response.ok){
+        fetchTasks();
+      } 
     } catch (error) {
       console.error("Failed to add a new task");
       setResult("Failed to add a new task");
     }
   };
+
+  const fetchTasks = async()=>{
+
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit}>
