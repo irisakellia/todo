@@ -94,8 +94,12 @@ const Index = () => {
         <h2 className='text-black font-serif  font-medium'>Your Tasks:</h2>
         <ul className=''>
           {tasks.map((task) => (
-            <li key={task._id} className='text-black'>
+            <li key={task._id} className='text-black mt-2'>
               {task.taskName}
+              <button onClick={()=> handleDelete(task._id)}>
+                <FaTrash className='text-black ml-4'/>
+
+              </button>
             </li>
           ))}
         </ul>
