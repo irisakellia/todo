@@ -65,5 +65,23 @@ const deleteTask = async(req,res)=>{
 }
 
 
+const updateTask = async(req,res)=>{
+try {
+  const {id} = req.params ;
+  const task = await Task.findByIdAndUpdate(id);
 
-module.exports = { addTask,getTasks,deleteTask };
+  if(!task){
+    return res.status(400).json({success:false , message:"can not find task to update"})
+  } else{
+    return res.status(200).json({success:true , message:"task was updated "})
+  }
+  
+} catch (error) {
+  console.error("can not update task", error);
+}
+  
+
+}
+
+
+module.exports = { addTask,getTasks,deleteTask,updateTask };

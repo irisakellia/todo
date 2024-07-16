@@ -66,6 +66,29 @@ const Index = () => {
 
   }
 
+  const editTask = async(id)=>{
+
+    try {
+
+      const response = await fetch(`http://localhost:3000/task/${id}`,{
+        method:"PUT",
+      });
+
+      const result = await response.json();
+      console.log(result)
+      if(result.ok){
+        fetchTasks();
+      }
+      
+    } catch (error) {
+      console.error("failed to update task", error)
+      setResult("failed to update my task")
+    }
+
+  }
+
+
+  
   return (
     <div className='grid grid-cols-2'>
       <section>
@@ -98,7 +121,9 @@ const Index = () => {
               {task.taskName}
               <button onClick={()=> handleDelete(task._id)}>
                 <FaTrash className='text-black ml-4'/>
-
+              </button>
+              <button onClick={()=>editTask(task._id)}>
+              <FaEdit className='ml-2 '/>
               </button>
             </li>
           ))}
