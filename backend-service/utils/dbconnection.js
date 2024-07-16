@@ -10,8 +10,8 @@ mongoose.connection.on("connected",()=>{
     console.log("connected successfully to mongodb");
 })
 
-mongoose.connection.on("error",()=>{
-    console.error("error.message");
+mongoose.connection.on("error",(error)=>{
+    console.error("cannot connect to mongodb");
 })
 
 mongoose.connection.on("disconnected",()=>{
