@@ -95,7 +95,7 @@ const Index = () => {
       <form onSubmit={handleSubmit}>
         <div className='bg-black h-[1000px]'>
           <h1 className='text-white font-serif pt-40 pl-96 font-medium'>
-            ANYTHING YOU WANNA DO PLEASE SHARE
+          anything you plan , please share
           </h1>
           <input
             type='text'
