@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 
+// the delete and edit api are malfunctional 
+//they do not workkk   
+//but the add and gettasks workk babyy
+
 const Index = () => {
   const [data, setData] = useState({ task: '' });
   const [tasks, setTasks] = useState([]);
@@ -95,7 +99,7 @@ const Index = () => {
       <form onSubmit={handleSubmit}>
         <div className='bg-black h-[1000px]'>
           <h1 className='text-white font-serif pt-40 pl-96 font-medium'>
-          anything you plan , please share
+         ANYTHING YOU WANNA DO , PLEASE DO SHARE
           </h1>
           <input
             type='text'
