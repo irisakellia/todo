@@ -73,24 +73,10 @@ const Index = () => {
 
   const editTask = async(id)=>{
 
-    try {
-
-      const response = await fetch(`http://localhost:3000/api/update/${id}`,{
-        method:"PUT",
-      });
-
-      const result = await response.json();
-      console.log(result)
-      if(result.ok){
-        fetchTasks();
-      }
-      
-    } catch (error) {
-      console.error("failed to update task", error)
-      setResult("failed to update my task")
-    }
-
+    const 
   }
+
+   
 
 
   
