@@ -4,6 +4,7 @@ import { FaTrash, FaEdit } from 'react-icons/fa';
 // the delete and edit api are malfunctional 
 //they do not workkk   
 //but the add and gettasks workk babyy
+// so wait mpaka ubunebwe bushize
 
 const Index = () => {
   const [data, setData] = useState({ task: '' });
