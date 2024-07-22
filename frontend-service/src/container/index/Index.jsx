@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 
-// the delete and edit api are malfunctional 
-//they do not workkk   
-//but the add and gettasks workk babyy
-// so wait mpaka ubunebwe bushize
+//all works
+//but the edit is a prompt
+//gotta change that later
 
 const Index = () => {
   const [data, setData] = useState({ task: '' });
