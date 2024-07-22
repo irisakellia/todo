@@ -73,7 +73,8 @@ const Index = () => {
 
   const editTask = async(id)=>{
 
-    const 
+    const newTask = prompt("enter the new task: ");
+    if(!newTask) return ;
   }
 
    
