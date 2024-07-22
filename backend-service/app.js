@@ -14,10 +14,9 @@ dbConnection();
 
 app.use(cors());
 app.use(bodyParser.json())
-app.use('/add', router);
-app.use('/all',router);
 
 
+app.use('/api', router);
 
 
 
