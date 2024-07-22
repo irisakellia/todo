@@ -71,12 +71,28 @@ const Index = () => {
 
   }
 
-  const editTask = async(id)=>{
-
-    const newTask = prompt("enter the new task: ");
-    if(!newTask) return ;
-  }
-
+  const editTask = async (id) => {
+    const newTaskName = prompt("Enter the new task name:"); 
+    if (!newTaskName) return;
+  
+    try {
+      const response = await fetch(`http://localhost:3000/api/update/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ task: newTaskName }),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        fetchTasks();
+      } else {
+        setResult(result.message);
+      }
+    } catch (error) {
+      console.error("failed to update task", error);
+      setResult("failed to update my task");
+    }
+  };
+  
    
 
 
