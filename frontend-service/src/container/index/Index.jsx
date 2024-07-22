@@ -18,7 +18,7 @@ const Index = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/add/task", {
+      const response = await fetch("http://localhost:3000/api/task", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ task: data.task }),
@@ -37,7 +37,7 @@ const Index = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch("http://localhost:3000/all/tasks");
+      const response = await fetch("http://localhost:3000/api/tasks");
       const result = await response.json();
       if (response.ok) {
         setTasks(result.tasks);
