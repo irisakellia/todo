@@ -54,7 +54,7 @@ const Index = () => {
 
   const handleDelete = async(id)=>{
     try {
-      const response = await fetch(`http://localhost:3000/remove/${id}`,{
+      const response = await fetch(`http://localhost:3000/api/remove/${id}`,{
         method:"DELETE",
 
       });
@@ -75,7 +75,7 @@ const Index = () => {
 
     try {
 
-      const response = await fetch(`http://localhost:3000/task/${id}`,{
+      const response = await fetch(`http://localhost:3000/api/update/${id}`,{
         method:"PUT",
       });
 
